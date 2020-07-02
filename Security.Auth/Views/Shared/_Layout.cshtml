@@ -1,0 +1,24 @@
+﻿@using IdentityServer4.Extensions
+@using OnlineAuction.Security.Auth
+@{
+    string name = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

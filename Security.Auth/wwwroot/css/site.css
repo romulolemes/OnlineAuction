@@ -1,0 +1,228 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active,
+input.login-input:-webkit-autofill {
+  border: none !important;
+  -webkit-text-fill-color: #337ab7 !important;
+  -webkit-box-shadow: 0 0 0px 1000px black inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  background: none !important;
+  box-shadow: 0 0 0px 1000px black inset !important;
+}
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  background-size: cover;
+  color: #fff;
+}
+h1 small {
+  color: #fff;
+}
+.login-page {
+  width: 90%;
+  letter-spacing: 2px;
+}
+.login-page .alert-connect {
+  background-color: rgba(244, 67, 54, 0.43);
+  border: none;
+  width: 100%;
+  color: #FFF;
+}
+.login-page .login-card form,
+.login-page .login-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-page .login-card form {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 64px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+.login-page .login-card form button {
+  width: 100px;
+}
+.login-page form h1 {
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  color: #FFFFFF;
+}
+.login-page form h5 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #c6c6c6;
+}
+.login-page form hr.sep {
+  background: #FFFFFF;
+  box-shadow: none;
+  border: none;
+  height: 2px;
+  width: 25%;
+  margin: 0px auto 45px auto;
+}
+.login-page form .emoji {
+  font-size: 1.2em;
+}
+.login-page .group {
+  position: relative;
+  margin: 45px 0;
+  width: 100%;
+}
+.login-page textarea {
+  resize: none;
+}
+.login-page input,
+.login-page textarea {
+  background: none;
+  color: #c6c6c6;
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #c6c6c6;
+}
+.login-page input:focus,
+.login-page textarea:focus {
+  outline: none;
+}
+.login-page input:focus ~ label,
+.login-page input:valid ~ label,
+.login-page textarea:focus ~ label,
+.login-page textarea:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: #FFFFFF;
+}
+.login-page input:focus ~ .bar:before,
+.login-page textarea:focus ~ .bar:before {
+  width: 100%;
+}
+.login-page input[type="password"] {
+  letter-spacing: 0.3em;
+}
+.login-page label {
+  color: #c6c6c6;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+.login-page .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.login-page .bar:before {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #FFFFFF;
+  transition: 300ms ease all;
+  left: 0%;
+}
+.navbar-header {
+  position: relative;
+  top: -4px;
+}
+.navbar-brand > .icon-banner {
+  position: relative;
+  top: -2px;
+  display: inline;
+}
+.icon {
+  position: relative;
+  top: -10px;
+}
+.logged-out iframe {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.page-consent .client-logo {
+  float: left;
+}
+.page-consent .client-logo img {
+  width: 80px;
+  height: 80px;
+}
+.page-consent .consent-buttons {
+  margin-top: 25px;
+}
+.page-consent .consent-form .consent-scopecheck {
+  display: inline-block;
+  margin-right: 5px;
+}
+.page-consent .consent-form .consent-description {
+  margin-left: 25px;
+}
+.page-consent .consent-form .consent-description label {
+  font-weight: normal;
+}
+.page-consent .consent-form .consent-remember {
+  padding-left: 16px;
+}
+.grants .page-header {
+  margin-bottom: 10px;
+}
+.grants .grant {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgray;
+}
+.grants .grant img {
+  width: 100px;
+  height: 100px;
+}
+.grants .grant .clientname {
+  font-size: 140%;
+  font-weight: bold;
+}
+.grants .grant .granttype {
+  font-size: 120%;
+  font-weight: bold;
+}
+.grants .grant .created {
+  font-size: 120%;
+  font-weight: bold;
+}
+.grants .grant .expires {
+  font-size: 120%;
+  font-weight: bold;
+}
+.grants .grant li {
+  list-style-type: none;
+  display: inline;
+}
+.grants .grant li:after {
+  content: ', ';
+}
+.grants .grant li:last-child:after {
+  content: '';
+}

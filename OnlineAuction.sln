@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Auth", "Security.Auth\Security.Auth.csproj", "{FCBEA1D1-8239-46E1-9D5B-5967E2099CF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseAPI", "BaseAPI\BaseAPI.csproj", "{B2B78555-E57F-4328-8E3C-759AD349AD79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCBEA1D1-8239-46E1-9D5B-5967E2099CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBEA1D1-8239-46E1-9D5B-5967E2099CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBEA1D1-8239-46E1-9D5B-5967E2099CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBEA1D1-8239-46E1-9D5B-5967E2099CF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B78555-E57F-4328-8E3C-759AD349AD79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B78555-E57F-4328-8E3C-759AD349AD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B78555-E57F-4328-8E3C-759AD349AD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B78555-E57F-4328-8E3C-759AD349AD79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4AE8E25-F736-45E6-A3D9-626C672F8027}
+	EndGlobalSection
+EndGlobal
