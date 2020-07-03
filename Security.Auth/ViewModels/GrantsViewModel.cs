@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.ViewModels
 {
     public class GrantsViewModel
     {

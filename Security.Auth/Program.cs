@@ -11,32 +11,13 @@ using System.IO;
 
 namespace OnlineAuction.Security.Auth
 {
-    /// <summary>
-    /// Classe principal.
-    /// </summary>
     public class Program
     {
-        /// <summary>
-        /// Namespace da aplicação.
-        /// </summary>
         public static readonly string AppNamespace = typeof(Program).Namespace;
-        /// <summary>
-        /// Nome da aplicação.
-        /// </summary>
         public static readonly string AppName = "Security.Auth";
-        /// <summary>
-        /// Chave de acesso a string de conexão padrão com banco de dados.
-        /// </summary>
         public static readonly string DefaultConnectionKey = "DefaultConnection";
-        /// <summary>
-        /// Id da aplicação no sistema operacional.
-        /// </summary>
         public static readonly int AppId = System.Diagnostics.Process.GetCurrentProcess().Id;
 
-        /// <summary>
-        /// Método principal inicial.
-        /// </summary>
-        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             IConfiguration configuration = GetConfiguration();
@@ -60,12 +41,6 @@ namespace OnlineAuction.Security.Auth
             }
         }
 
-        /// <summary>
-        /// Configuração do WebHost.
-        /// </summary>
-        /// <param name="configuration"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
         private static IWebHost BuildWebHost(IConfiguration configuration, string[] args)
         {
             var host = WebHost.CreateDefaultBuilder(args)
@@ -84,7 +59,8 @@ namespace OnlineAuction.Security.Auth
             host.ConfigureServices((context, collection) =>
             {
                 var loggerConfiguration = new LoggerConfiguration()
-                    .ReadFrom.Configuration(configuration);
+                    .ReadFrom.Configuration(configuration)
+                    .WriteTo.Console();
 
                 loggerConfiguration
                     .WriteTo.File($@"D:\Logs\OnlineAuction\{AppName}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 10000000, rollOnFileSizeLimit: true);
@@ -95,10 +71,6 @@ namespace OnlineAuction.Security.Auth
             });
         }
 
-        /// <summary>
-        /// Recupera as configurações.
-        /// </summary>
-        /// <returns></returns>
         private static IConfiguration GetConfiguration()
         {
             // Get configuration

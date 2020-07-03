@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-using OnlineAuction.Security.Auth.Identify.UI;
 using IdentityModel;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -11,6 +10,10 @@ using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.Security.Auth.Identify.UI;
+using OnlineAuction.Security.Auth.InputModels;
+using OnlineAuction.Security.Auth.Options;
+using OnlineAuction.Security.Auth.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +22,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Identity4 = IdentityServer4;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Controllers
 {
     /// <summary>
     /// This sample controller implements a typical login/logout/provision workflow for local and external accounts.

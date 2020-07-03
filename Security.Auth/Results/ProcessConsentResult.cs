@@ -2,7 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+using OnlineAuction.Security.Auth.ViewModels;
+
+namespace OnlineAuction.Security.Auth.Results
 {
     public class ProcessConsentResult
     {

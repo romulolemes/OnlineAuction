@@ -5,10 +5,14 @@
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using OnlineAuction.Security.Auth.InputModels;
+using OnlineAuction.Security.Auth.Options;
+using OnlineAuction.Security.Auth.Results;
+using OnlineAuction.Security.Auth.ViewModels;
+using Serilog;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity4 = IdentityServer4;
-using Serilog;
 
 namespace OnlineAuction.Security.Auth.Identify.UI
 {

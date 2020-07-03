@@ -4,7 +4,7 @@
 
 using IdentityServer4.Models;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.ViewModels
 {
     public class ErrorViewModel
     {

@@ -4,9 +4,11 @@
 
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.Security.Auth.Identify.UI;
+using OnlineAuction.Security.Auth.ViewModels;
 using System.Threading.Tasks;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Controllers
 {
     [SecurityHeaders]
     public class HomeController : Controller

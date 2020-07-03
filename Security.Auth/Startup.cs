@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OnlineAuction.Security.Auth.Data;
 using OnlineAuction.Security.Auth.Identify.UI;
+using OnlineAuction.Security.Auth.Services;
 using System.Collections.Generic;
 
 namespace OnlineAuction.Security.Auth

@@ -2,15 +2,13 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4.Services;
-using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using OnlineAuction.Security.Auth.Identify.UI;
+using OnlineAuction.Security.Auth.InputModels;
 using System.Threading.Tasks;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Controllers
 {
     /// <summary>
     /// This controller processes the consent UI

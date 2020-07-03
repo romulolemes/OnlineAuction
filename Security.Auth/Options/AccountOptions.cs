@@ -4,7 +4,7 @@
 
 using System;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Options
 {
     public class AccountOptions
     {

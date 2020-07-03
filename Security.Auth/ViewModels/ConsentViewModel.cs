@@ -2,9 +2,10 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using OnlineAuction.Security.Auth.InputModels;
 using System.Collections.Generic;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.ViewModels
 {
     public class ConsentViewModel : ConsentInputModel
     {

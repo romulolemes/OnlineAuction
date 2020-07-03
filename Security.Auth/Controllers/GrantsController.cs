@@ -4,13 +4,15 @@
 
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.Security.Auth.Identify.UI;
+using OnlineAuction.Security.Auth.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Controllers
 {
     /// <summary>
     /// This sample controller allows a user to revoke grants given to clients

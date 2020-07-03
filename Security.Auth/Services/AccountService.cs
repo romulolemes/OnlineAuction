@@ -8,12 +8,16 @@ using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using OnlineAuction.Security.Auth.InputModels;
+using OnlineAuction.Security.Auth.Options;
+using OnlineAuction.Security.Auth.Providers;
+using OnlineAuction.Security.Auth.ViewModels;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
 using Identity4 = IdentityServer4;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.Services
 {
     public class AccountService
     {
@@ -53,8 +57,8 @@ namespace OnlineAuction.Security.Auth.Identify.UI
 
             var providers = schemes
                 .Where(x => x.DisplayName != null ||
-                            (AccountOptions.WindowsAuthenticationEnabled &&
-                             x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, StringComparison.OrdinalIgnoreCase))
+                            AccountOptions.WindowsAuthenticationEnabled &&
+                             x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, StringComparison.OrdinalIgnoreCase)
                 )
                 .Select(x => new ExternalProvider
                 {

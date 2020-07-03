@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace OnlineAuction.Security.Auth.Identify.UI
+namespace OnlineAuction.Security.Auth.InputModels
 {
     public class ConsentInputModel
     {
