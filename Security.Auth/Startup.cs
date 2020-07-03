@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using OnlineAuction.Security.Auth.Data;
@@ -19,14 +21,11 @@ namespace OnlineAuction.Security.Auth
     {
         public const string CorsPolicyOrigins = "_CorsPolicyOrigins";
 
-        private IHostingEnvironment Env { get; }
         private IConfiguration Configuration { get; }
 
 
-
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
-            Env = env;
             Configuration = configuration;
         }
 
@@ -36,12 +35,12 @@ namespace OnlineAuction.Security.Auth
                 .AddLocalServices()
                 .AddCustomHealthCheck()
                 .AddCustomMVC(Configuration)
-                .AddIdentity(Configuration, Env);
+                .AddIdentity(Configuration);
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (Env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -64,12 +63,21 @@ namespace OnlineAuction.Security.Auth
             app.UseStaticFiles();
             app.UseCors(CorsPolicyOrigins);
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.UseHealthChecks("/hc", new HealthCheckOptions()
             {
                 Predicate = _ => true,
-                ResponseWriter = HealthChecks.UI.Client.UIResponseWriter.WriteHealthCheckUIResponse
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 
             app.UseHealthChecks("/liveness", new HealthCheckOptions
@@ -116,19 +124,18 @@ namespace OnlineAuction.Security.Auth
                 });
             });
 
-
             services.AddMvc()
-            .AddJsonOptions(opttionsJson =>
+            .AddNewtonsoftJson(options =>
             {
-                opttionsJson.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                opttionsJson.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             return services;
         }
 
-        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration, IHostingEnvironment env)
+        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             var sources = configuration.GetSection("Source").Get<List<string>>();
 

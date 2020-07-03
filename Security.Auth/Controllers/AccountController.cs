@@ -252,9 +252,6 @@ namespace OnlineAuction.Security.Auth.Controllers
             // external provider's authentication result, and provision the user as you see fit.
             // 
             // check if the external user is already provisioned
-            //
-            // (This is not necessary adding to your LDAP, in this case we keep it in memory or in Redis as a reference.
-            // I don't think it's a good idea to update your own Ldap for this except maybe for some scenario.
             var user = _userTestStore.FindByExternalProvider(provider, userId);
             if (user == default(TestUser))
             {
