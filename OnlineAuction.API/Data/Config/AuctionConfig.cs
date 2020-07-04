@@ -22,6 +22,12 @@ namespace OnlineAuction.API.Data.Config
 
             builder.Property(p => p.InitialValue)
                 .HasColumnType("decimal(18, 2)");
+
+            builder.Property(p => p.InitialDate)
+                .HasColumnType("date");
+
+            builder.Property(p => p.EndDate)
+                .HasColumnType("date");
         }
     }
 }

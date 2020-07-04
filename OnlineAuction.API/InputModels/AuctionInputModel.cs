@@ -23,9 +23,11 @@ namespace OnlineAuction.API.InputModels
         public string User { get; set; }
 
         [Required]
-        public DateTimeOffset? InitialDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? InitialDate { get; set; }
 
         [Required]
-        public DateTimeOffset? EndDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? EndDate { get; set; }
     }
 }

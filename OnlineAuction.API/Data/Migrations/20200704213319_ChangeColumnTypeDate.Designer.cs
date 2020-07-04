@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineAuction.API.Data;
 
 namespace OnlineAuction.API.Data.Migrations
 {
     [DbContext(typeof(OnlineAuctionContext))]
-    partial class OnlineAuctionContextModelSnapshot : ModelSnapshot
+    [Migration("20200704213319_ChangeColumnTypeDate")]
+    partial class ChangeColumnTypeDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

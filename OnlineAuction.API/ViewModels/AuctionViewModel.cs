@@ -12,7 +12,7 @@ namespace OnlineAuction.API.ViewModels
         public decimal InitialValue { get; set; }
         public bool IsUsed { get; set; }
         public string User { get; set; }
-        public DateTimeOffset InitialDate { get; set; }
-        public DateTimeOffset EndDate { get; set; }
+        public DateTime InitialDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
