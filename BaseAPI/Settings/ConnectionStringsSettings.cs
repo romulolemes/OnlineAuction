@@ -10,6 +10,6 @@ namespace BaseAPI.Settings
     /// </summary>
     public class ConnectionStringsSettings
     {
-        public string DefaultConnection { get; set; }
+        public string OnlineAuctionContext { get; set; }
     }
 }

@@ -1,11 +1,14 @@
 using BaseAPI;
+using BaseAPI.Settings;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnlineAuction.API.Data;
 
 namespace OnlineAuction.API
 {
@@ -24,6 +27,9 @@ namespace OnlineAuction.API
             services.AddCustomHealthCheck()
                 .AddCustomMVC()
                 .AddConfigureAuthService(Configuration);
+
+            services.AddDbContext<OnlineAuctionContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString(nameof(ConnectionStringsSettings.OnlineAuctionContext))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

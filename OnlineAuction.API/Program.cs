@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OnlineAuction.API.Data;
 using Serilog;
 using Serilog.Core;
 using Serilog.Extensions.Logging;
@@ -14,20 +16,18 @@ namespace OnlineAuction.API
     public class Program
     {
         public static readonly string AppNamespace = typeof(Program).Namespace;
-        public static readonly string AppName = "OnlineAuction.API";
-        public static readonly string DefaultConnectionKey = "DefaultConnection";
         public static readonly int AppId = System.Diagnostics.Process.GetCurrentProcess().Id;
 
         public static void Main(string[] args)
         {
-            IConfiguration configuration = GetConfiguration();
+            IConfiguration configuration = ConfigurationLocal.GetConfiguration();
 
             try
             {
-                Log.Information("Configuring web host {AppName} {PID}...", AppName, AppId);
+                Log.Information("Configuring web host {AppName} {PID}...", AppNamespace, AppId);
                 IWebHost host = BuildWebHost(configuration, args);
-
-                Log.Information("Starting web host {AppName} {PID}...", AppName, AppId);
+                MigrationDatabase(host);
+                Log.Information("Starting web host {AppName} {PID}...", AppNamespace, AppId);
                 host.Run();
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace OnlineAuction.API
             }
             finally
             {
-                Log.Information("Application {AppName} has been terminated", AppName);
+                Log.Information("Application {AppName} has been terminated", AppNamespace);
                 Log.CloseAndFlush();
             }
         }
@@ -62,7 +62,7 @@ namespace OnlineAuction.API
                     .ReadFrom.Configuration(configuration);
 
                 loggerConfiguration
-                    .WriteTo.File($@"D:\Logs\OnlineAuction\{AppName}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 10000000, rollOnFileSizeLimit: true);
+                    .WriteTo.File($@"D:\Logs\OnlineAuction\{AppNamespace}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 10000000, rollOnFileSizeLimit: true);
 
                 Logger logger = loggerConfiguration.CreateLogger();
                 Log.Logger = logger;
@@ -70,19 +70,24 @@ namespace OnlineAuction.API
             });
         }
 
-        private static IConfiguration GetConfiguration()
+        private static void MigrationDatabase(IWebHost host)
         {
-            // Get configuration
-            var builder = new ConfigurationBuilder();
-            string currentDirectory = Directory.GetCurrentDirectory();
-            builder
-                .AddJsonFile(Path.Combine(currentDirectory, "appsettings.json"), optional: false, reloadOnChange: true)
-                .AddJsonFile(Path.Combine(currentDirectory, $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json"), optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
-            // Bind settings
-            var configuration = builder.Build();
-            //configuration.Bind(AppSettings.Start);
-            return configuration;
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogInformation("Migrating database associated with context {DbContextName}", nameof(OnlineAuctionContext));
+                try
+                {
+                    var context = services.GetRequiredService<OnlineAuctionContext>();
+                    context.Database.Migrate();
+                    logger.LogInformation("Migrated database associated with context {DbContextName}", nameof(OnlineAuctionContext));
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "An error occurred while migrating the database used on context {DbContextName}", nameof(OnlineAuctionContext));
+                }
+            }
         }
     }
 }
