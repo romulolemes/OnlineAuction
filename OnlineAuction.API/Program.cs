@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,12 +9,12 @@ using Serilog.Extensions.Logging;
 using System;
 using System.IO;
 
-namespace OnlineAuction.Security.Auth
+namespace OnlineAuction.API
 {
     public class Program
     {
         public static readonly string AppNamespace = typeof(Program).Namespace;
-        public static readonly string AppName = "Security.Auth";
+        public static readonly string AppName = "OnlineAuction.API";
         public static readonly string DefaultConnectionKey = "DefaultConnection";
         public static readonly int AppId = System.Diagnostics.Process.GetCurrentProcess().Id;
 
@@ -59,8 +59,7 @@ namespace OnlineAuction.Security.Auth
             host.ConfigureServices((context, collection) =>
             {
                 var loggerConfiguration = new LoggerConfiguration()
-                    .ReadFrom.Configuration(configuration)
-                    .WriteTo.Console();
+                    .ReadFrom.Configuration(configuration);
 
                 loggerConfiguration
                     .WriteTo.File($@"D:\Logs\OnlineAuction\{AppName}.log", rollingInterval: RollingInterval.Day, fileSizeLimitBytes: 10000000, rollOnFileSizeLimit: true);
@@ -82,6 +81,7 @@ namespace OnlineAuction.Security.Auth
                 .AddEnvironmentVariables();
             // Bind settings
             var configuration = builder.Build();
+            //configuration.Bind(AppSettings.Start);
             return configuration;
         }
     }
