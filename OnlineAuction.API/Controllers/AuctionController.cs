@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineAuction.API.Data;
 using OnlineAuction.API.InputModels;
 using OnlineAuction.API.Models;
+using OnlineAuction.API.Services;
 using OnlineAuction.API.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,34 +15,26 @@ namespace OnlineAuction.API.Controllers
     [ApiController]
     public class AuctionController : ControllerBase
     {
-        private readonly OnlineAuctionContext _context;
+        private readonly AuctionService _service;
 
-        public AuctionController(OnlineAuctionContext context)
+        public AuctionController(AuctionService service)
         {
-            _context = context;
+            _service = service;
         }
 
         // GET: api/Auction
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AuctionViewModel>>> GetAuctionModel()
+        public async Task<ActionResult<IEnumerable<AuctionViewModel>>> GetAll() 
         {
-            return await _context.AuctionModel
-                .Select(x => ModelToViewModel(x))
-                .ToListAsync();
+            return await _service.GetAllAsync();
         }
+
 
         // GET: api/Auction/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AuctionViewModel>> GetAuctionModel(int id)
+        public async Task<ActionResult<AuctionViewModel>> GetById(int id)
         {
-            var auctionModel = await _context.AuctionModel.FindAsync(id);
-
-            if (auctionModel == null)
-            {
-                return NotFound();
-            }
-
-            return ModelToViewModel(auctionModel);
+            return await _service.GetById(id);
         }
 
         // PUT: api/Auction/5
@@ -53,81 +46,23 @@ namespace OnlineAuction.API.Controllers
                 return BadRequest();
             }
 
-            var auctionModel = await _context.AuctionModel.FindAsync(id);
-            if (auctionModel == null)
-            {
-                return NotFound();
-            }
-
-            auctionModel = InputModelToModel(auctionInput, auctionModel);
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException) when (!AuctionModelExists(id))
-            {
-                return NotFound();
-            }
-
-            return Ok(ModelToViewModel(auctionModel));
+            return Ok(await _service.UpdateAsync(id, auctionInput));
         }
 
         // POST: api/Auction
         [HttpPost]
         public async Task<ActionResult<AuctionViewModel>> PostAuctionModel(AuctionInputModel auctionInput)
         {
-            var auctionModel = new AuctionModel();
-            auctionModel = InputModelToModel(auctionInput, auctionModel);
+            var auctionViewModel = await _service.CreateAsync(auctionInput);
 
-            _context.AuctionModel.Add(auctionModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAuction", new { id = auctionModel.Id }, ModelToViewModel(auctionModel));
+            return CreatedAtAction("GetById", new { id = auctionViewModel.Id }, auctionViewModel);
         }
 
         // DELETE: api/Auction/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<AuctionViewModel>> DeleteAuctionModel(int id)
         {
-            var auctionModel = await _context.AuctionModel.FindAsync(id);
-            if (auctionModel == null)
-            {
-                return NotFound();
-            }
-
-            _context.AuctionModel.Remove(auctionModel);
-            await _context.SaveChangesAsync();
-
-            return ModelToViewModel(auctionModel);
-        }
-
-        private bool AuctionModelExists(int id)
-        {
-            return _context.AuctionModel.Any(e => e.Id == id);
-        }
-
-        private static AuctionViewModel ModelToViewModel(AuctionModel auctionModel) =>
-            new AuctionViewModel
-            {
-                Id = auctionModel.Id,
-                Name = auctionModel.Name,
-                InitialValue = auctionModel.InitialValue,
-                IsUsed = auctionModel.IsUsed,
-                User = auctionModel.User,
-                InitialDate = auctionModel.InitialDate,
-                EndDate = auctionModel.EndDate
-            };
-
-        private static AuctionModel InputModelToModel(AuctionInputModel auctionInput, AuctionModel auctionModel)
-        {
-            auctionModel.Name = auctionInput.Name;
-            auctionModel.InitialValue = auctionInput.InitialValue;
-            auctionModel.IsUsed = auctionInput.IsUsed;
-            auctionModel.User = auctionInput.User;
-            auctionModel.InitialDate = auctionInput.InitialDate;
-            auctionModel.EndDate = auctionInput.EndDate;
-            return auctionModel;
+            return await _service.DeleteAsync(id);
         }
     }
 }

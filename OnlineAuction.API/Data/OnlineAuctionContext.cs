@@ -17,6 +17,8 @@ namespace OnlineAuction.API.Data
         {
         }
 
+        public DbSet<AuctionModel> AuctionModel { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -32,7 +34,5 @@ namespace OnlineAuction.API.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-
-        public DbSet<OnlineAuction.API.Models.AuctionModel> AuctionModel { get; set; }
     }
 }

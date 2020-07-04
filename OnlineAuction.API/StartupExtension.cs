@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OnlineAuction.API.Services;
 
 namespace OnlineAuction.API
 {
@@ -23,6 +24,16 @@ namespace OnlineAuction.API
            });
 
             services.AddAuthorization();
+
+            return services;
+        }
+
+        public static IServiceCollection AddLocalServices(this IServiceCollection services)
+        {
+            #region Transient
+            services.AddTransient(typeof(AuctionService));
+            #endregion
+
 
             return services;
         }
