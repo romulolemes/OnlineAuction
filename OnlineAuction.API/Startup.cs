@@ -4,6 +4,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,11 @@ namespace OnlineAuction.API
 
             services.AddDbContext<OnlineAuctionContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString(nameof(ConnectionStringsSettings.OnlineAuctionContext))));
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

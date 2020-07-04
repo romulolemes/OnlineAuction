@@ -26,7 +26,7 @@ namespace OnlineAuction.API.Services
                 .ToListAsync();
         }
 
-        public async Task<AuctionViewModel> GetById(int id)
+        public async Task<AuctionViewModel> GetByIdAsync(int id)
         {
             AuctionModel auctionModel = await FindById(id);
 
@@ -60,7 +60,6 @@ namespace OnlineAuction.API.Services
             var auctionModel = await FindById(id);
 
             _context.AuctionModel.Remove(auctionModel);
-            await _context.SaveChangesAsync();
 
             await _context.SaveChangesAsync();
 
@@ -95,11 +94,11 @@ namespace OnlineAuction.API.Services
         private static AuctionModel InputModelToModel(AuctionInputModel auctionInput, AuctionModel auctionModel)
         {
             auctionModel.Name = auctionInput.Name;
-            auctionModel.InitialValue = auctionInput.InitialValue;
-            auctionModel.IsUsed = auctionInput.IsUsed;
+            auctionModel.InitialValue = auctionInput.InitialValue ?? default;
+            auctionModel.IsUsed = auctionInput.IsUsed ?? default;
             auctionModel.User = auctionInput.User;
-            auctionModel.InitialDate = auctionInput.InitialDate;
-            auctionModel.EndDate = auctionInput.EndDate;
+            auctionModel.InitialDate = auctionInput.InitialDate ?? default;
+            auctionModel.EndDate = auctionInput.EndDate ?? default;
             return auctionModel;
         }
     }

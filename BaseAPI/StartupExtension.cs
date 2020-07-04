@@ -39,6 +39,7 @@ namespace BaseAPI
             services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
             })
             .AddNewtonsoftJson(options =>
             {

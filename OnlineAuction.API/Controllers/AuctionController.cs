@@ -29,12 +29,11 @@ namespace OnlineAuction.API.Controllers
             return await _service.GetAllAsync();
         }
 
-
         // GET: api/Auction/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AuctionViewModel>> GetById(int id)
         {
-            return await _service.GetById(id);
+            return await _service.GetByIdAsync(id);
         }
 
         // PUT: api/Auction/5
