@@ -1,18 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OnlineAuction.API.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineAuction.API.InputModels;
-using OnlineAuction.API.Models;
 using OnlineAuction.API.Services;
 using OnlineAuction.API.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuctionController : ControllerBase
     {
         private readonly AuctionService _service;
@@ -24,7 +22,7 @@ namespace OnlineAuction.API.Controllers
 
         // GET: api/Auction
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AuctionViewModel>>> GetAll() 
+        public async Task<ActionResult<IEnumerable<AuctionViewModel>>> GetAll()
         {
             return await _service.GetAllAsync();
         }
