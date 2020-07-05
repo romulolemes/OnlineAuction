@@ -48,7 +48,7 @@ namespace OnlineAuction.Security.Auth.Data
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris = GetMountURIs(sourceList,"URL", new string[]{
-                        "http://URL/callback.html", "http://URL/silent-renew.html"}),
+                        "http://URL/assets/signin-callback.html", "http://URL/assets/silent-callback.html"}),
                     RequireConsent = false,
                     PostLogoutRedirectUris = GetMountURIs(sourceList,"URL", new string[]{
                         "http://URL/index.html",}),
@@ -72,6 +72,7 @@ namespace OnlineAuction.Security.Auth.Data
                     SubjectId = "1",
                     Username = "romulo",
                     Password = "1234",
+                    ProviderName = "Rômulo Rocha Lemes",
                     Claims =
                     {
                         new Claim("name", "Rômulo"),
