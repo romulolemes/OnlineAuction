@@ -10,6 +10,7 @@ export { User };
 })
 export class AuthService {
   userManager: UserManager;
+  currentUser: User;
 
   constructor() {
     const settings = {

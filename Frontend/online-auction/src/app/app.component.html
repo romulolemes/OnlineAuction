@@ -1,0 +1,26 @@
+<h1>Online Auction</h1>
+<nav>
+  <a routerLink="list" routerLinkActive="active">List Auction</a>
+  <a routerLink="add" routerLinkActive="active">Add Auction</a>
+</nav>
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Online Auction</span>
+    <span class="example-spacer"></span>
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example heart icon"
+      >favorite</mat-icon
+    >
+    <mat-icon
+      class="example-icon"
+      aria-hidden="false"
+      aria-label="Example delete icon"
+      >delete</mat-icon
+    >
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

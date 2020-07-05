@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Sample Angular Client
   </h1>
@@ -16,4 +16,11 @@
   <ul>
     <li *ngFor='let msg of messages'>{{msg}}</li>
   </ul>
-</div>
+</div> -->
+<h1>Online Auction</h1>
+<nav>
+  <a routerLink="/list" routerLinkActive="active">List Auction</a>
+  <a routerLink="/add" routerLinkActive="active">Add Auction</a>
+</nav>
+
+<router-outlet></router-outlet>
