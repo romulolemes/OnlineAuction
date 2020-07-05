@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  stsAuthority: 'http://localhost:5101/',
+  clientId: 'angular',
+  clientRoot: 'http://localhost:4200/',
+  clientScope: 'openid profile onlineauction',
+  apiRoot: 'http://localhost:5100/api/',
 };
 
 /*

@@ -1,25 +1,17 @@
-<h1>Online Auction</h1>
+<!-- <h1>Online Auction</h1>
 <nav>
   <a routerLink="list" routerLinkActive="active">List Auction</a>
   <a routerLink="add" routerLinkActive="active">Add Auction</a>
-</nav>
+</nav> -->
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Online Auction</span>
     <span class="example-spacer"></span>
-    <mat-icon
-      class="example-icon"
-      aria-hidden="false"
-      aria-label="Example heart icon"
-      >favorite</mat-icon
-    >
-    <mat-icon
-      class="example-icon"
-      aria-hidden="false"
-      aria-label="Example delete icon"
-      >delete</mat-icon
-    >
+    {{ userName }}
+    <button mat-icon-button aria-label="Logout" (click)="onLogout()">
+      <mat-icon>launch</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 
