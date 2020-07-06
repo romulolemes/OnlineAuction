@@ -52,8 +52,4 @@ export class AuthService {
       return false;
     }
   }
-
-  isLoggedInObs(): Observable<boolean> {
-    return from(this.isUserLogged());
-  }
 }

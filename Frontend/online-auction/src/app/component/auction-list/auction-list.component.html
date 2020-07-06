@@ -20,13 +20,15 @@
     <ng-container matColumnDef="InitialDate">
       <th mat-header-cell *matHeaderCellDef>Data Incial</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.InitialDate | date }}
+        {{ element.InitialDate | date: "dd/MM/yyyy" }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="EndDate">
       <th mat-header-cell *matHeaderCellDef>Data Final</th>
-      <td mat-cell *matCellDef="let element">{{ element.EndDate | date }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.EndDate | date: "dd/MM/yyyy" }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="User">
