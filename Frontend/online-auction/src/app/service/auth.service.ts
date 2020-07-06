@@ -2,6 +2,7 @@ import { User, UserManager, UserManagerSettings } from 'oidc-client';
 import { environment } from 'src/environments/environment';
 
 import { Injectable } from '@angular/core';
+import { from, Observable } from 'rxjs';
 
 export { User };
 
@@ -50,5 +51,9 @@ export class AuthService {
       console.log(err);
       return false;
     }
+  }
+
+  isLoggedInObs(): Observable<boolean> {
+    return from(this.isUserLogged());
   }
 }

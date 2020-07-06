@@ -8,17 +8,24 @@ import { AuctionAddEditComponent } from './component/auction-add-edit/auction-ad
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    redirectTo: '/list',
+    pathMatch: 'full',
     canActivate: [AuthGuardService],
   },
-  { path: 'list', component: AuctionListComponent },
+  {
+    path: 'list',
+    component: AuctionListComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'add',
     component: AuctionAddEditComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'edit/:id',
     component: AuctionAddEditComponent,
+    canActivate: [AuthGuardService],
   },
 ];
 

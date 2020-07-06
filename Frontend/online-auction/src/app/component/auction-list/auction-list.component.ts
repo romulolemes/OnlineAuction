@@ -14,11 +14,11 @@ export class AuctionListComponent implements OnInit {
 
   displayedColumns: string[] = [
     'Name',
-    'User',
-    'IsUsed',
     'InitialValue',
+    'IsUsed',
     'InitialDate',
     'EndDate',
+    'User',
     'Edit',
     'Delete',
   ];
