@@ -47,10 +47,13 @@ namespace OnlineAuction.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(StartupOptions.PolicyCorsOptions);
+
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

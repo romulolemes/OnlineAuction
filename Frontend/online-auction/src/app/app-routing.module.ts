@@ -11,6 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   { path: 'list', component: AuctionListComponent },
+  { path: '', redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
 ];
 
 @NgModule({
