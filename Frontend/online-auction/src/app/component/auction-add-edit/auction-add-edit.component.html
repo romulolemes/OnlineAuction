@@ -1,0 +1,82 @@
+<mat-card-content>
+  <form [formGroup]="auctionForm" id="auctionForm" name="auctionForm">
+    <div class="form-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Nome"
+          maxlength="200"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Inicial</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="initialValue"
+          placeholder="Valor Inicial"
+        />
+        <span matPrefix>R$</span>
+      </mat-form-field>
+      <br />
+      <mat-radio-group formControlName="isUsed" type="boole">
+        <mat-radio-button value="true">Usado</mat-radio-button>
+        <mat-radio-button value="false">Novo</mat-radio-button>
+      </mat-radio-group>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Data Inicial</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="initialDate"
+          placeholder="Data Inicial"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Data Final</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="endDate"
+          placeholder="Data Final"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Usuário</mat-label>
+        <input
+          matInput
+          formControlName="user"
+          placeholder="Usuário"
+          maxlength="200"
+        />
+      </mat-form-field>
+      <br />
+    </div>
+  </form>
+  <div class="p-t-16 flex">
+    <div class="w-100">
+      <mat-card-actions>
+        <ng-content></ng-content>
+        <span class="example-spacer"></span>
+        <button id="button-cancel" mat-button>
+          Cancelar
+        </button>
+        <button
+          id="button-save"
+          mat-raised-button
+          color="primary"
+          [disabled]="auctionForm.invalid"
+          (click)="onSubmit()"
+        >
+          Salvar
+        </button>
+      </mat-card-actions>
+    </div>
+  </div>
+</mat-card-content>

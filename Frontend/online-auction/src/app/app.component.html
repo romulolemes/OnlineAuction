@@ -1,12 +1,12 @@
 <!-- <h1>Online Auction</h1>-->
 <nav>
   <a routerLink="list" routerLinkActive="active">List Auction</a>
-  <a routerLink="add" routerLinkActive="active">Add Auction</a>
+  <a routerLink="add-edit" routerLinkActive="active">Add Auction</a>
 </nav>
 
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Online Auction</span>
+    <span>Leirão Online</span>
     <span class="example-spacer"></span>
     {{ userName }}
     <button mat-icon-button aria-label="Logout" (click)="onLogout()">
@@ -15,4 +15,4 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div class="container-app"><router-outlet></router-outlet></div>
