@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuctionInputModel } from 'src/app/model/auction-input-model';
 import { AuctionService } from 'src/app/service/auction.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuctionViewModel } from 'src/app/model/auction-view-model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-auction-add-edit',
@@ -23,10 +25,42 @@ export class AuctionAddEditComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auctionService: AuctionService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    public datepipe: DatePipe
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      console.log(params.get('id'));
+    });
+
+    this.route.paramMap.subscribe((params) => {
+      if (params.has('id')) {
+        this.auctionService
+          .getAuctionById(parseInt(params.get('id')))
+          .subscribe((auction) => {
+            this.fillAuction(auction);
+          });
+      }
+    });
+  }
+
+  fillAuction(auction: AuctionViewModel): void {
+    this.auctionForm.setValue({
+      id: auction.Id,
+      name: auction.Name,
+      user: auction.User,
+      isUsed: String(auction.IsUsed),
+      initialValue: auction.InitialValue,
+      initialDate: this.datepipe.transform(auction.InitialDate, 'yyyy-MM-dd'),
+      endDate: this.datepipe.transform(auction.EndDate, 'yyyy-MM-dd'),
+    });
+  }
+
+  cancel(): void {
+    this.router.navigate(['/list']);
+  }
 
   onSubmit(): void {
     let auctionForm = this.auctionForm.getRawValue();
@@ -34,13 +68,13 @@ export class AuctionAddEditComponent implements OnInit {
       Id: auctionForm.id ? auctionForm.id : 0,
       Name: auctionForm.name,
       InitialValue: auctionForm.initialValue,
-      IsUsed: auctionForm.isUsed,
+      IsUsed: auctionForm.isUsed == 'true',
       InitialDate: auctionForm.initialDate,
       EndDate: auctionForm.endDate,
       User: auctionForm.user,
     };
 
-    const observer = {
+    const observerCallback = {
       next: () => {
         // this.dialog.success("Your item was successfully saved!", false)();
         // this.dialogRef.close();
@@ -52,8 +86,11 @@ export class AuctionAddEditComponent implements OnInit {
     };
 
     if (auctionInput.Id !== 0) {
+      this.auctionService
+        .updateAuction(auctionInput)
+        .subscribe(observerCallback);
     } else {
-      this.auctionService.saveAuction(auctionInput).subscribe(observer);
+      this.auctionService.saveAuction(auctionInput).subscribe(observerCallback);
     }
   }
 }

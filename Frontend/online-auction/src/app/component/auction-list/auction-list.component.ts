@@ -21,6 +21,7 @@ export class AuctionListComponent implements OnInit {
     'InitialValue',
     'InitialDate',
     'EndDate',
+    'Edit',
   ];
   dataSource = new MatTableDataSource<AuctionViewModel>([]);
 

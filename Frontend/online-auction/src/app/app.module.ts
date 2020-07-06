@@ -11,6 +11,7 @@ import { MaterialModule } from './material-module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuardService } from './service/auth-guard.service';
 import { AuthService } from './service/auth.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, AuctionListComponent, AuctionAddEditComponent],
@@ -24,6 +25,7 @@ import { AuthService } from './service/auth.service';
   providers: [
     AuthGuardService,
     AuthService,
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

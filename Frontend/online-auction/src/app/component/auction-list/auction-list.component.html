@@ -43,6 +43,19 @@
       <td mat-cell *matCellDef="let element">{{ element.EndDate | date }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="Edit">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          aria-label="Editar"
+          [routerLink]="['/edit', element.Id]"
+        >
+          <mat-icon>launch</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
