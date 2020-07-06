@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuctionService } from 'src/app/service/auction.service';
 import { AuctionViewModel } from 'src/app/model/auction-view-model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auction-list',
@@ -14,7 +13,6 @@ export class AuctionListComponent implements OnInit {
   constructor(public auctionService: AuctionService) {}
 
   displayedColumns: string[] = [
-    'Id',
     'Name',
     'User',
     'IsUsed',
@@ -22,6 +20,7 @@ export class AuctionListComponent implements OnInit {
     'InitialDate',
     'EndDate',
     'Edit',
+    'Delete',
   ];
   dataSource = new MatTableDataSource<AuctionViewModel>([]);
 
@@ -32,24 +31,17 @@ export class AuctionListComponent implements OnInit {
     this.getAuctions();
   }
 
-  getAuctions() {
+  getAuctions(): void {
     this.auctionService
       .getAuctions()
       .subscribe((auctions: AuctionViewModel[]) => {
         this.dataSource.data = auctions;
-        console.log(auctions);
       });
   }
-}
 
-const ELEMENT_DATA: AuctionViewModel[] = [
-  {
-    Id: 1,
-    Name: 'Teste',
-    User: 'Rômulo',
-    IsUsed: false,
-    InitialValue: 1000,
-    InitialDate: new Date(),
-    EndDate: new Date(),
-  },
-];
+  delete(auction: AuctionViewModel): void {
+    this.auctionService.deleteAuction(auction).subscribe((auctionDelete) => {
+      this.getAuctions();
+    });
+  }
+}
