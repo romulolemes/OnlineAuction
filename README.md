@@ -32,12 +32,6 @@ Abaixo encontrasse a lista de funcionalidaes implementadas:
 * [NPM](https://www.npmjs.com/)
 * [.NET Core](https://docs.microsoft.com/pt-br/dotnet/core/)
 
-- SDK do .NET Core.
-Link para instação 
-
-- Download dependencia do projeto
-Use `npm install` para baixar as dependencias necessárias para esse projeto.
-
 ## Configuração
 
 #### Angular 2 Application
