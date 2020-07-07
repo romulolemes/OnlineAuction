@@ -19,32 +19,32 @@ namespace OnlineAuction.API.Services
             _context = context;
         }
 
-        public async Task<List<AuctionViewModel>> GetAllAsync()
+        public virtual async Task<List<AuctionViewModel>> GetAllAsync()
         {
-            return await _context.AuctionModel
+            return await _context.Auction
                 .Select(x => ModelToViewModel(x))
                 .ToListAsync();
         }
 
-        public async Task<AuctionViewModel> GetByIdAsync(int id)
+        public virtual async Task<AuctionViewModel> GetByIdAsync(int id)
         {
             AuctionModel auctionModel = await FindById(id);
 
             return ModelToViewModel(auctionModel);
         }
 
-        public async Task<AuctionViewModel> CreateAsync(AuctionInputModel auctionInput)
+        public virtual async Task<AuctionViewModel> CreateAsync(AuctionInputModel auctionInput)
         {
             var auctionModel = new AuctionModel();
             auctionModel = InputModelToModel(auctionInput, auctionModel);
 
-            _context.AuctionModel.Add(auctionModel);
+            _context.Auction.Add(auctionModel);
             await _context.SaveChangesAsync();
 
             return ModelToViewModel(auctionModel);
         }
 
-        public async Task<AuctionViewModel> UpdateAsync(int id, AuctionInputModel auctionInput)
+        public virtual async Task<AuctionViewModel> UpdateAsync(int id, AuctionInputModel auctionInput)
         {
             var auctionModel = await FindById(id);
 
@@ -55,11 +55,11 @@ namespace OnlineAuction.API.Services
             return ModelToViewModel(auctionModel);
         }
 
-        public async Task<AuctionViewModel> DeleteAsync(int id)
+        public virtual async Task<AuctionViewModel> DeleteAsync(int id)
         {
             var auctionModel = await FindById(id);
 
-            _context.AuctionModel.Remove(auctionModel);
+            _context.Auction.Remove(auctionModel);
 
             await _context.SaveChangesAsync();
 
@@ -68,7 +68,7 @@ namespace OnlineAuction.API.Services
 
         private async Task<AuctionModel> FindById(int id)
         {
-            var auctionModel = await _context.AuctionModel.FindAsync(id);
+            var auctionModel = await _context.Auction.FindAsync(id);
 
             if (auctionModel == null)
             {

@@ -17,7 +17,7 @@ namespace OnlineAuction.API.Data
         {
         }
 
-        public DbSet<AuctionModel> AuctionModel { get; set; }
+        public virtual DbSet<AuctionModel> Auction { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
