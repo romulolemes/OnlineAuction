@@ -33,7 +33,7 @@ Link para instação https://docs.microsoft.com/pt-br/dotnet/core/install/sdk
 
 ## Build e execução
 
-Usando a IDE de sua preferencia (Visual Studio, Rider) abra a Solução 'OnlineAuction.sln'. Em seguida após a abertura do projeto e realizado o Build do mesmo, execute a aplicação 'OnlineAuction.API'.
+Usando a IDE de sua preferencia (Visual Studio, Rider) abra a Solução **OnlineAuction.sln**. Em seguida após a abertura do projeto e realizado o Build do mesmo, execute a aplicação **OnlineAuction.API**.
 Tal procedimento irá startup o backend da aplicação.
 
 Em seguida, abra no terminal na pasta raiz da aplicação e execute a linha de comando a seguir para realizar o startup do frontend da aplicação 
@@ -42,7 +42,7 @@ Em seguida, abra no terminal na pasta raiz da aplicação e execute a linha de c
 COMANDOOOOOOOOOOOOOOOOOO
 ``` 
  
-Após realizar os procedimento acima, você estará apto a utilizar as funcionalidades da aplicação que podem ser acessadas através do link https://localhost:4200/
+Após realizar os procedimento acima, você estará apto a utilizar as funcionalidades da aplicação que podem ser acessadas através do link *https://localhost:4200/*
 
 
 ## Autor
