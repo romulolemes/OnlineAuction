@@ -27,9 +27,13 @@ Abaixo encontrasse a lista de funcionalidaes implementadas:
   - Campos: nome do leilão, valor inicial, indicador se o item leiloado é "usado" e usuário responsável pelo leilão, indicador se o leilão está foi finalizado
 
 ## Pré-requisito
+* [Angular CLI](https://cli.angular.io/)
+* [Node.js](https://nodejs.org/en/)
+* [NPM](https://www.npmjs.com/)
+* [.NET Core](https://docs.microsoft.com/pt-br/dotnet/core/)
 
 - SDK do .NET Core.
-Link para instação https://docs.microsoft.com/pt-br/dotnet/core/install/sdk
+Link para instação 
 
 - Download dependencia do projeto
 Use `npm install` para baixar as dependencias necessárias para esse projeto.
