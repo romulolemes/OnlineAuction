@@ -40,15 +40,15 @@ Use `npm install` para baixar as dependencias necessárias para esse projeto.
 
 ## Configuração
 
-### Angular 2 Application
-#### Download das dependências do projeto
+#### Angular 2 Application
+##### Download das dependências do projeto
 Use `npm install` para realizar o download das depenedências necessárias para esse projeto.
 
-### Angular CLI Commands
-#### Development server
+#### Angular CLI Commands
+##### Development server
 Execute `ng serve` em um terminal para startup o servidor da aplicação. Navegue para `http://localhost:4200/`.
 
-### .NET Application
+#### .NET Application
 Usando a IDE de sua preferencia (Visual Studio, Rider) abra a Solução `OnlineAuction.sln`. Em seguida após a abertura do projeto e realizado o Build do mesmo, execute as aplicações `OnlineAuction.API` e `Security.Auth`. Tal procedimento irá startup o backend da aplicação.
 
 ## Autor
